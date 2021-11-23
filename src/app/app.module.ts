@@ -25,7 +25,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     NgMultiSelectDropDownModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ'
+      apiKey: 'AIzaSyAK5fdPBekaXbfIocmMMbfhCaixabhggJA'
+      // apiKey: 'AIzaSyCtF5J7ren75RWoSU5Mttsm-9VFnj3oAhw'
     })
   ],
   providers: [],

@@ -1,0 +1,69 @@
+<div class="main-container">
+    <div class="header-container">
+        <div class="truck-list" [ngClass]="{'selected': total}" (click)="selectedTruckDiv('total')">
+            <label for="">Total Trucks</label><br>
+            <h2>{{totalTruck}}</h2>
+        </div>
+        <div class="truck-list" [ngClass]="{'selected': running}" (click)="selectedTruckDiv('running')">
+            <label for="">Running Trucks</label><br>
+            <h2>{{totalRunningTruck}}</h2>
+        </div>
+        <div class="truck-list" [ngClass]="{'selected': stopped}" (click)="selectedTruckDiv('stopped')">
+            <label for="">Stopped Trucks</label><br>
+            <h2>{{totalStoppedTruck}}</h2>
+        </div>
+        <div class="truck-list" [ngClass]="{'selected': idle}" (click)="selectedTruckDiv('idle')">
+            <label for="">Idle trucks</label><br>
+            <h2>{{totalIdleTruck}}</h2>
+        </div>
+        <div class="truck-list" [ngClass]="{'selected': error}" (click)="selectedTruckDiv('error')">
+            <label for="">Error Trucks</label><br>
+            <h2>{{totalErrorTruck}}</h2>
+        </div>
+        <div class="truck-list">
+            <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelect)="onItemDeSelect($event)" (onDeSelectAll)="onDeSelectAll($event)">
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+    <div class="below-container">
+        <div class="sidebar">
+            <div class="search_input">
+                <input type="text" placeholder="Search" [(ngModel)]="search">
+            </div>
+            <div>
+                <ul *ngIf="!multiselectCheck">
+                    <li *ngFor="let item of truckData | filter:search" [ngClass]="{'error_trucks': error}">
+                        <div class="top">
+                            <span class="truck_number"> {{item.truckNumber}} </span>
+                            <span class="time_in_min"> 22 min </span>
+                        </div>
+                        <div class="bottom">
+                            <span class="stopped_since"> Stopped since last 11d </span>
+                            <span class="speed" *ngIf="!!item.lastWaypoint">{{item.lastWaypoint.speed}}</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul *ngIf="multiselectCheck">
+                    <li *ngFor="let item of selectTruckData | filter:search" [ngClass]="{'error_trucks': error}">
+                        <div class="top">
+                            <span class="truck_number"> {{item.truckNumber}} </span>
+                            <span class="time_in_min"> 22 min </span>
+                        </div>
+                        <div class="bottom">
+                            <span class="stopped_since"> Stopped since last 11d </span>
+                            <span class="speed" *ngIf="!!item.lastWaypoint">{{item.lastWaypoint.speed}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="truckData.length <1 || selectTruckData.length <1">
+                Not Found
+            </div>
+        </div>
+        <div class="map-container">
+            <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div>
+    </div>
+</div>

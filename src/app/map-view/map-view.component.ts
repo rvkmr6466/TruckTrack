@@ -24,6 +24,7 @@ export class MapViewComponent implements OnInit {
   stoppedSince: string = '';
   runningTruck: boolean = true;
   truckData: any;
+  allTruckData: any;
   totalTruckArray: Array<any> = [];
   runningTruckDataArray: Array<any> = [];
   stoppedTruckDataArray: Array<any> = [];
@@ -126,6 +127,7 @@ export class MapViewComponent implements OnInit {
   manageResponse(data: any) {
     this.totalTruck = data.data.length;
     this.truckData = data.data;
+    this.allTruckData = data.data;
     this.totalTruckArray = this.truckData;
     this.allFilterData(this.truckData);
     this.total = true;
@@ -144,10 +146,10 @@ export class MapViewComponent implements OnInit {
   }
 
   allFilterData(data: any) {
-    let dataArr = ['running', 'stopped', 'idle', 'error'];
-    for (let item of dataArr) {
-      this.runningTruckDataArray = this.filterTruckList(data, item);
-    }
+    this.runningTruckDataArray = this.filterTruckList(data, 'running');
+    this.stoppedTruckDataArray = this.filterTruckList(data, 'stopped');
+    this.idleTruckDataArray = this.filterTruckList(data, 'idle');
+    this.errorTruckDataArray = this.filterTruckList(data, 'error');
   }
 
 
@@ -178,7 +180,7 @@ export class MapViewComponent implements OnInit {
 
   onSelectAll(items: any) {
     this.multiselectCheck = true;
-    this.selectTruckData = [...this.truckData];
+    this.selectTruckData = [...this.allTruckData];
     this.allFilterData(this.selectTruckData);
     console.log(items);
   }
@@ -241,5 +243,9 @@ export class MapViewComponent implements OnInit {
         }
       );
     }
+  }
+
+  checkData(event: any){
+    console.log(event.data)
   }
 }

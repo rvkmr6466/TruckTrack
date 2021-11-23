@@ -28,7 +28,7 @@
     <div class="below-container">
         <div class="sidebar">
             <div class="search_input">
-                <input type="text" placeholder="Search" [(ngModel)]="search">
+                <input type="text" placeholder="Search" [(ngModel)]="search" (input)="checkData($event)">
             </div>
             <div>
                 <ul *ngIf="!multiselectCheck">
@@ -56,8 +56,8 @@
                     </li>
                 </ul>
             </div>
-            <div *ngIf="truckData.length <1 || selectTruckData.length <1">
-                Not Found
+            <div *ngIf="multiselectCheck && selectTruckData.length < 1 || !multiselectCheck && truckData.length < 1">
+                Not Data Selected
             </div>
         </div>
         <div class="map-container">

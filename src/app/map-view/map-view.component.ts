@@ -50,7 +50,7 @@ export class MapViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let url = 'https://api.mystral.in/tt/mobile/logistics/searchTrucks?auth-company=PCH&companyId=33&deacti vated=false&key=g2qb5jvucg7j8skpu5q7ria0mu&q-expand=true&q-include=lastRunningState,last Waypoint';
+    let url = 'https://api.mystral.in/tt/mobile/logistics/searchTrucks?auth-company=PCH&companyId=33&deacti%20vated=false&key=g2qb5jvucg7j8skpu5q7ria0mu&q-expand=true&q-include=lastRunningState,lastWaypoint';
     this.http.get<any>(url).subscribe(
       (response: any) => {
         if (response) {
@@ -223,12 +223,16 @@ export class MapViewComponent implements OnInit {
     else if (str == 'error') {
       let arr1 = [];
       for (let i of truckDataArray) {
+        this.evaluateTime();
         arr1.push(i.lastRunningState.stopStartTime - i.createTime);
-
       }
       this.totalErrorTruck = arr.length;
     }
     return arr;
+  }
+
+  evaluateTime(){
+
   }
 
   sendTheNewValue(event: any) {

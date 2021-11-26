@@ -35,7 +35,7 @@
                     <li *ngFor="let item of truckData | filter:search" [ngClass]="{'error_trucks': error}">
                         <div class="top">
                             <span class="truck_number"> {{item.truckNumber}} </span>
-                            <span class="time_in_min"> 22 min </span>
+                            <span class="time_in_min"> {{ item.lastWaypoint.createTime | mydatefilter}} </span>
                         </div>
                         <div class="bottom">
                             <span class="stopped_since"> Stopped since last 11d </span>
@@ -47,7 +47,7 @@
                     <li *ngFor="let item of selectTruckData | filter:search" [ngClass]="{'error_trucks': error}">
                         <div class="top">
                             <span class="truck_number"> {{item.truckNumber}} </span>
-                            <span class="time_in_min"> 22 min </span>
+                            <span class="time_in_min"> {{ item.lastWaypoint.createTime | mydatefilter}} </span>
                         </div>
                         <div class="bottom">
                             <span class="stopped_since"> Stopped since last 11d </span>
@@ -61,9 +61,9 @@
             </div>
         </div>
         <div class="map-container">
-            <agm-map [latitude]="lat" [longitude]="lng">
+            <!-- <agm-map [latitude]="lat" [longitude]="lng">
                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-            </agm-map>
+            </agm-map> -->
         </div>
     </div>
 </div>

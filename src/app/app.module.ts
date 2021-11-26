@@ -10,12 +10,14 @@ import { AgmCoreModule } from '@agm/core';
 import { FilterPipe } from './map-view/pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MyDatePipe } from './map-view/pipes/date.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapViewComponent,
-    FilterPipe
+    FilterPipe,
+    MyDatePipe
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgMultiSelectDropDownModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAK5fdPBekaXbfIocmMMbfhCaixabhggJA'
-      // apiKey: 'AIzaSyCtF5J7ren75RWoSU5Mttsm-9VFnj3oAhw'
     })
   ],
   providers: [],
